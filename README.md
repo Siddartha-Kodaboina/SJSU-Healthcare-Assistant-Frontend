@@ -2,8 +2,6 @@
 
 A Single page web app with dashboard  where people can pick the date and time and fix an appointment. A doctor can review his appointments and prescribe medicine to a Patient from his dashboard.
 
-[Live Website](https://online-doctors-portal.web.app/) | [Live API Server](https://online-doctors-portal.herokuapp.com/)
-
 #### Features :
 * Online appointment making
 * Patients Database
@@ -26,5 +24,18 @@ A Single page web app with dashboard  where people can pick the date and time an
 * Express.js
 * MongoDB
 
+# Setup Instructions
 
-[Back-end Repository](https://github.com/PriontoAbdullah/docotrs-portal-server)
+## Check you versions
+Node: 20.5.1
+npm: 9.8.0
+
+## Installing packages
+```bash
+npm install -y
+```
+
+## Running Application
+```bash
+npm start
+```
