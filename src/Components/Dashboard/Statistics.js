@@ -8,28 +8,36 @@ const Statistics = () => {
 	// Load all Appointments and Patients Information
 	useEffect(
 		() => {
+			console.log('Statistics useEffect - allBookedAppointments:', contextData.allBookedAppointments);
 			const uniquePatients = [];
 			const map = new Map();
-			if (contextData.allBookedAppointments.length) {
+			if (contextData.allBookedAppointments && contextData.allBookedAppointments.length) {
 				for (const ap of contextData.allBookedAppointments) {
-					if (!map.has(ap.patientInfo.email)) {
-						map.set(ap.patientInfo.email, true); // set any value to Map
-						uniquePatients.push({
-							name: ap.patientInfo.name,
-							phone: ap.patientInfo.phone,
-							email: ap.patientInfo.email,
-							gender: ap.patientInfo.gender,
-							age: ap.patientInfo.age,
-							weight: ap.patientInfo.weight
-						});
+					// Check if patientInfo exists and has an email property
+					if (ap.patientInfo && ap.patientInfo.email) {
+						console.log('Processing patient:', ap.patientInfo.email);
+						if (!map.has(ap.patientInfo.email)) {
+							map.set(ap.patientInfo.email, true); // set any value to Map
+							uniquePatients.push({
+								name: ap.patientInfo.name || 'Unknown',
+								phone: ap.patientInfo.phone || 'Unknown',
+								email: ap.patientInfo.email,
+								gender: ap.patientInfo.gender || 'Unknown',
+								age: ap.patientInfo.age || 'Unknown',
+								weight: ap.patientInfo.weight || 'Unknown'
+							});
+						}
+					} else {
+						console.warn('Found appointment with missing patientInfo or email:', ap);
 					}
 				}
 			}
 
+			console.log('Unique patients found:', uniquePatients.length);
             contextData.setAllPatients(uniquePatients);
         },
         
-		[  contextData.allBookedAppointments ]
+		[contextData.allBookedAppointments]
 	);
 
  

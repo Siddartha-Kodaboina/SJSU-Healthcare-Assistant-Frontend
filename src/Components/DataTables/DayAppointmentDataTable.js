@@ -77,7 +77,7 @@ const DayAppointmentDataTable = () => {
 					<tbody>
 						{appointmentsOfTheDay.map((ap) => (
 							<tr>
-								<td>{ap.patientInfo.name}</td>
+								<td>{ap.patientInfo?.name || 'N/A'}</td>
 								<td>{ap.date}</td>
 								<td className="text-center">
 									<select

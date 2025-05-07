@@ -122,7 +122,7 @@ const AppointmentDataTable = () => {
 							<td>{srNo++}</td>
 							<td>{ap.date}</td>
 							<td>{ap.time}</td>
-							<td>{ap.patientInfo.name.substr(0, 16)}</td>
+							<td>{ap.patientInfo?.name ? ap.patientInfo.name.substr(0, 16) : 'N/A'}</td>
 							<td className="text-center">
 								{ap.paymentID ? (
 									<button onClick={() => openPaymentView(ap._id)} className="btn btn-success">
@@ -211,7 +211,7 @@ const AppointmentDataTable = () => {
 				{selectAppointment && (
 					<form className="px-5 my-3" onSubmit={handleSubmit(onSubmit)}>
 						<h5 className="text-primary text-center mb-5">
-							{selectAppointment.patientInfo.name}'s Appointment
+							{selectAppointment.patientInfo?.name || 'Patient'}'s Appointment
 						</h5>
 						<div className="form-group row">
 							<label htmlFor="" className="col-4">

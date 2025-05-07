@@ -4,12 +4,29 @@ import SingleStatistic from './SingleStatistic';
 
 const PatientStatistics = () => {
 	const ContextData = useContext(DataContext);
+	console.log('PatientStatistics - ContextData:', { 
+		allBookedAppointments: ContextData.allBookedAppointments?.length || 0,
+		loggedInUser: ContextData.loggedInUser
+	});
 
-		// Filter only login patients appointments
-		const appointmentsOfThePatient = ContextData.allBookedAppointments.filter(
-			(ap) => ap.patientInfo.email === ContextData.loggedInUser.email
-		);
-	
+	// Check if required data exists
+	if (!ContextData.loggedInUser || !ContextData.loggedInUser.email) {
+		console.warn('PatientStatistics: loggedInUser or email is undefined');
+	}
+
+	if (!ContextData.allBookedAppointments) {
+		console.warn('PatientStatistics: allBookedAppointments is undefined');
+	}
+
+	// Filter only login patients appointments with null checks
+	const appointmentsOfThePatient = (ContextData.allBookedAppointments || []).filter(
+		(ap) => ap.patientInfo && ap.patientInfo.email && 
+		       ContextData.loggedInUser && ContextData.loggedInUser.email && 
+		       ap.patientInfo.email === ContextData.loggedInUser.email
+	);
+
+	console.log('PatientStatistics - Filtered appointments:', appointmentsOfThePatient.length);
+
 
 	const total = appointmentsOfThePatient.length;
 

@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import './assets/styles/variables.css';
 import reportWebVitals from './reportWebVitals';
 import { CopilotKit } from "@copilotkit/react-core"; 
 import "@copilotkit/react-ui/styles.css";

@@ -115,7 +115,7 @@ const PatientPrescriptionDataTable = () => {
 			>
 				{selectAppointment && (
 					<form className="px-5 my-3">
-						<h5 className="text-primary text-center">{selectAppointment.patientInfo.name}'s Disease</h5>
+						<h5 className="text-primary text-center">{selectAppointment.patientInfo?.name || 'Patient'}'s Disease</h5>
 						<p className="text-center mb-2 mt-3">
 							<small>Appointment To</small>
 						</p>
@@ -129,7 +129,7 @@ const PatientPrescriptionDataTable = () => {
 									selectAppointment.disease ? (
 										selectAppointment.disease
 									) : (
-										selectAppointment.patientInfo.problem
+										selectAppointment.patientInfo?.problem || 'Not specified'
 									)
 								}
 								name="problem"
@@ -190,10 +190,10 @@ const PatientPrescriptionDataTable = () => {
 						<div>
 							<div className="mb-3 mb-4 d-flex justify-content-between">
 								<span className="text-secondary">
-									<strong>{selectAppointment.patientInfo.name}</strong>
+									<strong>{selectAppointment.patientInfo?.name || 'Patient'}</strong>
 								</span>
-								<span>Gender : {selectAppointment.patientInfo.gender}</span>
-								<span>Age : {selectAppointment.patientInfo.age}</span>
+								<span>Gender : {selectAppointment.patientInfo?.gender || 'Not specified'}</span>
+								<span>Age : {selectAppointment.patientInfo?.age || 'Not specified'}</span>
 							</div>
 
 							<div className="mt-5" style={{ height: '300px', overflow: 'auto' }}>

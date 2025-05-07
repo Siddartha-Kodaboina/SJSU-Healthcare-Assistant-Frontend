@@ -1,18 +1,18 @@
 const services = [
     {
-        name : 'Upload Medical Report',
+        name: 'SJSU Student Health Records',
         img : 'https://i.imgur.com/htqT9X4.png',
-        description : 'Upload and save important medical reports in the wrb app. Your reports are safely stored and they help the doctors to provide you get all kinds of health related services with accurate consultation.'
+        description: 'Securely upload and store your medical records in our HIPAA-compliant platform. Your health information is integrated with SJSU Student Health Center systems, allowing for seamless care coordination between virtual and in-person visits.'
     },
     {
-        name : 'Get Medicine Reminder',
+        name: 'Medication Management',
         img : 'https://i.imgur.com/sb3UrlO.png',
-        description : 'Who remembers to take medicine on time! That’s why the web app has a medicine reminder feature which auto-sync with e-prescriptions and will remind you to take the medicine at the right time.'
+        description: 'Never miss a dose with our smart medication reminder system. Prescriptions from SJSU Health Center providers are automatically synced, and you will receive notifications based on your class schedule to help you stay on track with your treatment.'
     },
     {
-        name : 'Create Health Profile',
+        name: 'AI-Enhanced Health Profile',
         img : 'https://i.imgur.com/Zc8dKE2.png',
-        description : 'Add information about your current or chronic medical conditions, family medical history  in the profile section of the web App. Allow Doctors to ensure fast and accurate medical care for you.'
+        description: 'Create a comprehensive health profile that helps SJSU healthcare providers deliver personalized care. Our AI system analyzes your information to identify potential health concerns and suggest preventive measures tailored to student health needs.'
     },
 ]
 

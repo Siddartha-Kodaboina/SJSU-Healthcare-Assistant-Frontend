@@ -5,30 +5,42 @@ import Modal from 'react-modal';
 import { DataContext } from '../../App';
 import ProcessPayment from '../ProcessPayment/ProcessPayment';
 
-const PatientAppointmentPaymentTable = () => {
+const PatientAppointmentPaymentTable = ({ appointments }) => {
 	const ContextData = useContext(DataContext);
 	const [ selectAppointment, setSelectAppointment ] = useState(null);
 	const [ modalIsOpen, setModalIsOpen ] = useState(false);
 	const [ selectDoctor, setSelectDoctor ] = useState(null);
 	const [ doctorModalIsOpen, setDoctorModalIsOpen ] = useState(false);
 
-	// Filter only login patients appointments
-	const appointmentsOfThePatient = ContextData.allBookedAppointments.filter(
-		(ap) => ap.patientInfo.email === ContextData.loggedInUser.email
+	console.log('PatientAppointmentPaymentTable - Props appointments:', appointments);
+	console.log('PatientAppointmentPaymentTable - ContextData:', { 
+		allBookedAppointments: ContextData.allBookedAppointments?.length || 0,
+		loggedInUser: ContextData.loggedInUser
+	});
+
+	// Use appointments prop if available, otherwise filter from context with null checks
+	const appointmentsOfThePatient = appointments || (ContextData.allBookedAppointments || []).filter(
+		(ap) => ap.patientInfo && ap.patientInfo.email && 
+		       ContextData.loggedInUser && ContextData.loggedInUser.email && 
+		       ap.patientInfo.email === ContextData.loggedInUser.email
 	);
+
+	console.log('PatientAppointmentPaymentTable - Filtered appointments:', appointmentsOfThePatient?.length || 0);
 
 	const openPaymentModal = (apId) => {
 		setModalIsOpen(true);
-		const selectedAp = ContextData.allBookedAppointments.find((ap) => ap._id === apId);
-		setSelectAppointment(selectedAp);
+		const selectedAp = (ContextData.allBookedAppointments || []).find((ap) => ap._id === apId);
+		console.log('Opening payment modal for appointment:', selectedAp);
+		setSelectAppointment(selectedAp || null);
 	};
 
 	const openDataDoctorModal = (apId, docId) => {
 		setDoctorModalIsOpen(true);
-		const selectedAp = ContextData.allBookedAppointments.find((ap) => ap._id === apId);
-		const selectedDoc = ContextData.allAppointments.find((ap) => ap.id === docId);
-		setSelectAppointment(selectedAp);
-		setSelectDoctor(selectedDoc);
+		const selectedAp = (ContextData.allBookedAppointments || []).find((ap) => ap._id === apId);
+		const selectedDoc = (ContextData.allAppointments || []).find((ap) => ap.id === docId);
+		console.log('Opening doctor modal for appointment:', selectedAp, 'and doctor:', selectedDoc);
+		setSelectAppointment(selectedAp || null);
+		setSelectDoctor(selectedDoc || null);
 	};
 
 	let srNo = 1;
@@ -214,7 +226,7 @@ const PatientAppointmentPaymentTable = () => {
 							) : (
 								<div>
 									<div className="mb-3 mb-4 text-center">
-										<h5 className="text-primary mb-1">{selectAppointment.patientInfo.name}</h5>
+										<h5 className="text-primary mb-1">{selectAppointment.patientInfo?.name || 'Patient'}</h5>
 										<p className="text-secondary mb-0">Date : {selectAppointment.date}</p>
 										<p className="text-secondary mb-0">Time : {selectAppointment.time}</p>
 										<p className="text-success">Pay 700 ৳ </p>

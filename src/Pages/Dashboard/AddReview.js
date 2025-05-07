@@ -83,7 +83,7 @@ const AddReview = () => {
 								type="text"
 								onBlur={inputHandler}
 								name="from"
-								placeholder="District Name"
+								placeholder="Major Name"
 								required={true}
 							/>
 						</Form.Group>

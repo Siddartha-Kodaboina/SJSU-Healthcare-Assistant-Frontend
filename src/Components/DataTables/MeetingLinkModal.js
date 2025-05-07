@@ -68,7 +68,7 @@ const MeetingLinkModal = (props) => {
 				{props.selectAppointment && (
 					<div>
 						<div className="mb-3 mb-4 d-flex justify-content-between">
-							<span className="text-primary">{props.selectAppointment.patientInfo.name}</span>
+							<span className="text-primary">{props.selectAppointment.patientInfo?.name || 'Patient'}</span>
 							<span>Date : {props.selectAppointment.date}</span>
 							<span>Time : {props.selectAppointment.time}</span>
 						</div>

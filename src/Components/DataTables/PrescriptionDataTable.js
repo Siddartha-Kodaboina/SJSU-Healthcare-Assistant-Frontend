@@ -96,7 +96,7 @@ const PrescriptionDataTable = () => {
 							<td>{srNo++}</td>
 							<td>{ap.date}</td>
 							<td>{ap.time}</td>
-							<td>{ap.patientInfo.name.substr(0, 16)}</td>
+							<td>{ap.patientInfo?.name ? ap.patientInfo.name.substr(0, 16) : 'N/A'}</td>
 							<td>{`#${ap._id.substr(0, 7)}`}</td>
 							<td>{ap.visitingStatus? ap.visitingStatus : 'Not Visited'}</td>
 
@@ -155,7 +155,7 @@ const PrescriptionDataTable = () => {
 			>
 				{selectAppointment && (
 					<form className="px-5 my-3" onSubmit={handleSubmit(onSubmit)}>
-						<h5 className="text-primary text-center">{selectAppointment.patientInfo.name}'s Disease</h5>
+						<h5 className="text-primary text-center">{selectAppointment.patientInfo?.name || 'Patient'}'s Disease</h5>
 						<p className="text-center mb-2 mt-3">
 							<small>Appointment To</small>
 						</p>
@@ -169,7 +169,7 @@ const PrescriptionDataTable = () => {
 									selectAppointment.disease ? (
 										selectAppointment.disease
 									) : (
-										selectAppointment.patientInfo.problem
+										selectAppointment.patientInfo?.problem || 'Not specified'
 									)
 								}
 								ref={register({ required: true })}
